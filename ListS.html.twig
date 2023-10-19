@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors</title>
+
+    <style>
+        /* Styles for buttons */
+        .action-button {
+            display: inline-block;
+            padding: 8px 16px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        .action-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Liste étudiants:</h1>
+    <h3><a class="action-button" href="{{ path('add') }}">Ajouter un autre étudiant</a></h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Âge</th>
+                <th>Classroom</th>
+                <th>Action</th> <!-- Ajoutez une colonne pour les actions -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in response %}
+            <tr>
+                <td>{{ t.id }}</td>
+                <td>{{ t.name }}</td>
+                <td>{{ t.email }}</td>
+                <td>{{ t.age }}</td>
+                <td>{{ t.classroom }}</td>
+                <td>
+                    <a class="action-button" href="{{ path('edit_student', {'id': t.id}) }}">Modifier</a>
+                    <a class="action-button" href="{{ path('rm', {'id': t.id}) }}">Supprimer</a>
+                </td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+
+</body>
+
+</html>
